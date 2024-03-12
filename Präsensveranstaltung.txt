@@ -1,0 +1,475 @@
+
+% workspace löschen, auch versteckte Variablen
+clear all
+
+% alle File handles schließen und alle Diagramme schließen
+close all
+
+% Leerzeilen entfernen
+format compact
+
+% Shell löschen
+clc
+
+
+% Stützstellen Sinus
+x = [0 : 30 : 180]
+x_bogenmass = x/180*pi
+y = sin(x_bogenmass)
+
+
+
+x = [1 : 4] % Automatisch Schrittweite 1 annehmen
+x = [4 : -1 : 1] % Rückwärts indizieren
+
+
+info - Online Hilfefunktion
+
+
+acos(0)*2
+
+
+% Leere Variablen
+
+c = []
+
+
+% erstellen von Daten
+I = linspace(1, 4)
+I = linspace(1, 4, 10) % letzter Wert sind die Anzahl an Element die gewünscht sind
+J = logspace(1, 4) % Von 10^1 bis 10^4 in logarithmischen Schritten 
+
+
+
+% Spaltenvektoren
+
+K = [ 1
+      2
+	  3
+	  4 ]
+	  
+L = { 1; 2; 3; 4; }
+
+
+% ones
+
+ones(1, 4)
+ones(4, 1)
+ones(4, 4)
+
+% Einheitsmatrix
+
+eye(4)
+
+
+% Indizes aller Elemente, die Bedingung erfüllen
+
+J = find(e > 100) % gibt Indizes zurück
+
+J( find( J == max(J) ) )
+
+
+
+% Maximum
+
+max(J)
+
+[a index_a] = max(J)
+
+
+
+% Beispiel
+
+Q = 1:10
+Q = (1:2:end) = 0 % Ersetzt Werte im Vektor (Jedes zweite) durch 0. end ist ein Keyword und beschreibt das Ende des Vektors.
+
+
+Q(1:end) = [1:10]*5
+
+
+
+
+
+Matlab - 23.02.2024
+
+Scientific Prefix ausrechnen
+
+Dynamische Arrays, die mit jedem hinzugefügten Element wachsen.
+
+Kurvenanpassungen, Lineare Regression (Fehler wird quadriert, damit positive und negative Fehler gleich verrechnet werden können. Die Fehlersumme wird minimiert.
+Ergebnis ist eine mathematische Funktion beispielsweiße ein Polynom. Polynome werden auch durch matlab-vektoren beschrieben	)
+
+polyfit -> Funktion aus Punkten
+polyval -> Punkte aus Funktion
+polyint -> Polynom integrieren (Achtung, nicht das integrieren allgemeiner Funktionen)
+polyder -> Ableiten von Polynomen???
+
+Curve-Fitting Toolbox, kostet Extra
+- Konfidenzintervall
+- Funktioniert für viele selbst-definierte Funktionen
+- Matlab generiert Code um den Fit zu erzeugn
+
+
+Bildverarbeitung
+Elektromagnetische Verträglichkeit
+
+
+
+
+Kommt dran
+Bilder, Töne, Komplexe Wechselstromrechnung
+Kein If-else, keine Schleifen
+
+
+Kommt nicht dran
+Videos, symbolische Dinge
+
+
+
+
+
+Rechnen mit Symbolvariablen
+
+Ausgabe von Diagrammen.
+Wie zeichnet man mehrer Diagramme.
+Wie verschiebt man die legende
+Wie ändert man die Achsen
+
+
+
+
+
+# Clear workspace
+
+close all
+clear all
+clc
+format compact
+
+
+
+
+
+
+## Vectors
+
+Vectors basically do not exist in matlab, ohne matrices exist.
+
+A Matrix is a set of rows organized in columns
+Columns are separated by semicolon.
+The values within a column are separated by comma.
+
+Creating a row vector is to create a deteriorated matrix that just has a single row,
+so no row-separator (the semicolon) is required.
+
+Creating a column vector is to create deteriorated matrix that has only a single 
+element per row, so no value separated (comma) is used.
+
+
+
+### Zeilenvektoren (row vektors)
+
+Defining a vector can be done explicitly and implicitly
+
+* Explicitly: listing each element explicitly
+* Impllictly: Defining the vector indirectly using ranges and an optional increment step size.
+
+#### Explicitly
+
+The full format is: 
+
+vektor = [1, 2, 3];
+
+angular brackets and commans 
+
+#### Implicitly
+
+Defining a row vector is done using the colon operator.
+
+vektor = 1:4;
+
+Optionally a increment step size can be added
+
+vektor = 1:1:25;
+
+Angular brackets seem to be optional
+
+vektor = 1:4;
+vektor = 1:4:25;
+
+
+
+
+
+
+### Column vector
+
+To define a column vector, the angular brackets are required!
+Inside the angular brackets, use semicolon to separate each row.
+
+a = [1; 2; 3; 4]
+
+
+
+
+## Matrix
+
+Generating a matrix is done creating a row vector where each element is a colomn.
+
+a = [1 2 3; 4 5 6; 7 8 9]
+
+
+A = magic(3)
+A = zeros(3)
+A = ones(3)
+
+
+
+Another way to defined a matrix is to literally write down the matrix just
+as you would write the matrix on a sheet of paper:
+
+```
+s = [      
+    0 0 5  2 0 0  0 8 0
+    8 0 0  4 0 0  0 0 0
+    0 6 0  5 0 0  0 0 3
+
+    0 0 0  0 1 0  3 0 0
+    0 3 0  7 2 0  0 0 0
+    0 0 6  0 5 3  0 2 0  % Zeile 6
+
+    7 1 2  0 0 0  0 0 0
+    6 0 9  0 0 0  0 5 7
+    0 0 0  0 0 0  0 0 4
+];
+```
+
+The rows are separated whenever a new space is detected.
+
+
+
+## Reshape the matrix into a column vector.
+
+
+
+# Quiz
+
+## Zeilenvektor mit Nullen erstellen
+zeros(1, 9)
+
+## Zeilenvektor mit Einsen erstellen
+ones(1, 9)
+
+## Integrieren einer Funktion
+syms x
+y = sin(x)
+
+Y = int(y, x) % unbestimmt
+Y_bestimmt = int(y, x, 0, 2*pi) % bestimmt
+
+## Differenzieren einer Funktion
+syms x
+y = sin(x)
+
+dy_dx = diff(y, x)
+
+
+
+
+## Fittingfehler beim polinom fitting
+
+% Wellenlänge und Fittingfehler bestimmen
+% dlda1 speichert den Fittingfehler
+[ lda dlda1 ] = polyval( p, phi, s );
+
+
+
+
+## Funktionen Definieren
+
+Eine Funktion kann in einer .m Datei definiert werden. Diese Datei muss im Suchpfad liegen.
+Wenn der Dateiname dem Funktionsnamen entspricht funktioniert es.
+
+Beispiel: dms2meg
+
+type dms2deg.m
+degrees_decimal = dms2deg(phi_dms)
+
+
+
+```
+function phi_deg = dms2deg(phi_dms)
+phi_deg = phi_dms(:, 1) + phi_dms(:, 2) / 60;
+end
+```
+
+function <return variables> = <function_name>(<input-variables>)
+
+end
+
+A function in matlab can return several variables at once.
+To return a value assign that value to a return variable defined previously.
+
+
+
+## Working with Polynomials
+
+
+polyfit(X, Y, N)
+X - x values of stützstellen
+Y - y values of stützstellen
+N - degree of polynomial to create
+
+```
+p = polyfit(I_mA, U_V, 1);
+```
+
+polyval(p, x, S, mu)
+p -  [in] the polynomial instance from polyfit() for example
+x -  [in] Array of x values at which to evaluate the polynomial
+S -  [out] the optional output structure S created by POLYFIT. (Contains fitting errors)
+mu - [out] The centering and scaling parameters MU are optional output computed by POLYFIT.
+
+```
+Rpoly = polyval(p, [0 5]);
+```
+
+polyval();
+
+
+
+
+## Diagrams
+
+### Definitions
+
+figure - a figure comprises a coordinate system, a optional grid and one or more plots() inside it
+diagram - same as figure
+
+### figure starts a new diagram (window)
+
+Every call to figure starts a new diagram window.
+The call to figure is optional. If there is no call to figure, a call to plot will also start a new diagram window!
+
+### The hold state (Drawing several plot() into the same diagram)
+
+The hold on command affects the hold state.
+The hold state can either be on or off.
+If the hold state is on, then every call to plot() will be added to the current diagram.
+If the hold state is off, then a new call to plot() will replace the entire existing diagram content.
+draws two plot() calls into the same diagram window!
+Without a call to hold on, each call to plot replaces the old diagram content that means the default
+hold state is off.
+
+### Drawing several figures into the same diagram window is done using:
+
+```
+tiledlayout(2, 2)
+
+tile_1 = nexttile;
+plot(tile_1, s, s_1)
+title('s_1')
+
+tile_2 = nexttile;
+plot(tile_2, s, s_5)
+title('s_5')
+
+tile_3 = nexttile;
+plot(tile_3, s, s_10)
+title('s_10')
+
+tile_4 = nexttile;
+plot(tile_4, s, s_50)
+title('s_50')
+```
+
+Alternative:
+
+subplot(2,2,1);
+
+
+
+```
+figure
+hold on
+plot([0 5], Rpoly, 'b-')
+plot(I_mA, U_V,  'o')
+legend('Messung', 'Regression', 'Location','SouthEast')
+hold off
+
+grid on
+ylabel('U_{mess} / V \rightarrow')
+xlabel('Strom I_R / mA \rightarrow')
+title('Meine Messung')
+axis([0 6 0 6])
+```
+
+### plot
+plot(x-values, y-values, <LineSpec>)
+
+% markers
+LineSpec ::= "o" 	% draw a marker only
+more: https://de.mathworks.com/help/matlab/creating_plots/specify-line-and-marker-appearance-in-plots.html
+
+% lines
+LineSpec ::= "-" 	% draw a solid line between values
+LineSpec ::= "--" 	% Dashed line
+LineSpec ::= ":" 	% Dotted line
+LineSpec ::= "-." 	% Dash-dotted line
+
+```
+x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+y = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+plot(x, y, "o")
+```
+
+```
+plot([1 2 3 4 5 6], [0 3 1 6 4 10], '--or')
+```
+
+```
+p = plot([1 2 3 4 5 6], [0 3 1 6 4 10], '-o', 'Color', [0.5 0 0.8]);
+```
+
+```
+R = 0.5;
+G = 0;
+%B = 0.8;
+B = 0;
+
+p = plot([1 2 3 4 5 6], [0 3 1 6 4 10], '-o', 'Color', [R G B]);
+```
+
+```
+p = plot([1 2 3 4 5 6], [0 3 1 6 4 10]);
+%p.Color = '#00841a';
+p.Color = '#FF0000';
+p.LineStyle = '--';
+p.Marker = '*';
+```
+
+
+
+```
+figure
+
+p = plot([1 2 3 4 5 6], [0 3 1 6 4 10]);
+%p.Color = '#00841a';
+p.Color = '#FF0000';
+p.LineStyle = '--';
+p.Marker = '*';
+
+hold on
+
+x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+y = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+plot(x, y, "o")
+
+
+x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+y = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+
+plot(x, y, ":")
+```

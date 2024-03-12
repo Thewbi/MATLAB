@@ -1,0 +1,19 @@
+% workspace löschen, auch versteckte Variablen
+clear all
+
+% alle File handles schließen und alle Diagramme schließen
+close all
+
+% Leerzeilen entfernen
+format compact
+
+% Shell löschen
+clc
+
+
+
+x = 0.004513; % Ergebnis wäre "4.513 m"
+
+%ex = [ 9 6 3 0 -3 -6 -9 -12 ] % Giga, Mega, Kilo, 0, milli, micro, nano, pico
+ex = [ 9 : -3 : -12 ]
+prefix = 'GMk mµnp';

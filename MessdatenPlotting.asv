@@ -1,0 +1,49 @@
+%% Erste Auswertung
+
+% workspace löschen, auch versteckte Variablen
+clear all
+
+% alle File handles schließen und alle Diagramme schließen
+close all
+
+% Leerzeilen entfernen
+format compact
+
+% Shell löschen
+clc
+
+%% Messdaten
+
+%   U/V   I/mA
+Messung = [ ...
+    0     0
+    1     0.939
+    2     2.035
+    3     2.998
+    4     4.015
+    5     4.873
+    ];
+
+%% Extraktion der Messdaten
+U_V = Messung(:, 1);
+I_mA = Messung(:, 2);
+
+%% Visualisierung
+
+figure
+%plot(U_V, I_mA, 'o')
+plot(I_mA, U_V,  'o')
+grid on
+ylabel('U_{mess} / V \rightarrow')
+xlabel('Strom I_R / mA \rightarrow')
+title('Meine Messung')
+axis([0 6 0 6])
+
+%% Regression
+p = polyfit(I_mA, U_V, 1)
+R_kOhm = p(1);
+fprintf("Widerstand R = %.2f kOhm\n", R_kOhm)
+
+Rpoly = polyval(p, [0 5]);
+hold on
+plot(I)
